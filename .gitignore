@@ -1,5 +1,6 @@
 __pycache__/*
-s_learning_be_api/__pycache__/*
-s_learning_be_api/models/__pycache__/*
-s_learning_be_api/migrations/__pycache__/*
-s_learning_be_api/migrations/0001_initial.py
+s_learning_api/__pycache__/*
+s_learning_api/models/__pycache__/*
+s_learning_api/migrations/__pycache__/*
+s_learning_api/migrations/*
+None/*
