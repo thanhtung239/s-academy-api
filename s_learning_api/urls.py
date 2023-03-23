@@ -16,12 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
+from rest_framework_simplejwt import views as jwt_views
 
 from .models.User import User
 from .models.Course import Course
 
 from .views.Courses import CourseViewSet
 from .views.User import UserViewSet
+from .views.Registration import RegisterView
+from .views.Common import LogoutView
 
 admin.site.register(User)
 admin.site.register(Course)
@@ -32,5 +35,9 @@ router.register('users', UserViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls))
+    path('api/', include(router.urls)),
+    path('api/register/', RegisterView.as_view()),
+    path('api/logout/', LogoutView.as_view()),
+    path('api/token/', jwt_views.TokenObtainPairView.as_view(), name ='token_obtain_pair'),
+    path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name ='token_refresh')
 ]
