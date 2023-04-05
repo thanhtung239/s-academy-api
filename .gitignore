@@ -3,4 +3,4 @@ s_learning_api/__pycache__/*
 s_learning_api/models/__pycache__/*
 s_learning_api/migrations/__pycache__/*
 s_learning_api/migrations/*
-None/*
+assets/*

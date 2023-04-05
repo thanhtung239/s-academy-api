@@ -17,21 +17,29 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt import views as jwt_views
+from django.conf.urls.static import static
+from django.conf import settings
 
 from .models.User import User
 from .models.Course import Course
+from .models.Lesson import Lesson
+from .models.Document import Document
 
 from .views.Courses import CourseViewSet
 from .views.User import UserViewSet
+from .views.Lesson import LessonViewSet
 from .views.Registration import RegisterView
 from .views.Common import LogoutView
 
 admin.site.register(User)
 admin.site.register(Course)
+admin.site.register(Lesson)
+admin.site.register(Document)
 
 router = DefaultRouter()
 router.register('courses', CourseViewSet)
 router.register('users', UserViewSet)
+router.register('lessons', LessonViewSet, basename='lesson')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -41,3 +49,6 @@ urlpatterns = [
     path('api/token/', jwt_views.TokenObtainPairView.as_view(), name ='token_obtain_pair'),
     path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name ='token_refresh')
 ]
+
+# config URL image
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
