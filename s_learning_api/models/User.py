@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Group
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.hashers import make_password
 from django.utils.translation import gettext_lazy as _
@@ -40,6 +40,7 @@ class User(AbstractUser):
     
     email = models.EmailField(_('email address'), unique=True, blank=False)
     password = models.CharField(max_length=250)
+    groups = models.ManyToManyField(Group, verbose_name=_("Groups"), blank=True, null=True)
     company = models.CharField(max_length=250, blank=True)
     department = models.CharField(max_length=250, blank=True)
     gen_id = models.IntegerField(unique=True, blank=True, null=True)

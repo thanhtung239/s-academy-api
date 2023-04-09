@@ -25,7 +25,7 @@ from .models.Course import Course
 from .models.Lesson import Lesson
 from .models.Document import Document
 
-from .views.Courses import CourseViewSet
+from .views.Courses import CourseAPIView, GetDetailCourse, AddUserToCourse
 from .views.User import UserViewSet
 from .views.Lesson import LessonViewSet
 from .views.Registration import RegisterView
@@ -37,7 +37,6 @@ admin.site.register(Lesson)
 admin.site.register(Document)
 
 router = DefaultRouter()
-router.register('courses', CourseViewSet)
 router.register('users', UserViewSet)
 router.register('lessons', LessonViewSet, basename='lesson')
 
@@ -46,6 +45,9 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('api/register/', RegisterView.as_view()),
     path('api/logout/', LogoutView.as_view()),
+    path('api/courses/', CourseAPIView.as_view()),
+    path('api/courses/detail/', GetDetailCourse.as_view()),
+    path('api/courses/users/', AddUserToCourse.as_view()),
     path('api/token/', jwt_views.TokenObtainPairView.as_view(), name ='token_obtain_pair'),
     path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name ='token_refresh')
 ]
